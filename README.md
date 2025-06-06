@@ -1,58 +1,55 @@
-# Image Classification using Pretrained Model (GoogLeNet)
+# 🫘 Bean Leaf Disease Classification using Pretrained GoogLeNet
 
-This project demonstrates how to perform image classification using a pretrained deep learning model—**GoogLeNet**—on a custom dataset. The model is fine-tuned to classify images into different categories, showcasing the power of transfer learning in computer vision.
+This project focuses on classifying **bean plant leaves** into three categories using a pretrained deep learning model—**GoogLeNet**. It demonstrates the use of transfer learning for agricultural disease detection, specifically identifying leaf conditions such as:
 
-## 📂 Project Structure
+- **Healthy**
+- **Angular Leaf Spot**
+- **Bean Rust**
 
-- `Image Classification using pretrained model.ipynb`: Main Jupyter notebook containing code for loading data, training, and evaluating the model.
-- `data/`: Folder containing training and testing image datasets (not included in this repository).
-- `models/`: (Optional) Directory to save trained model weights.
+## 📁 Dataset
+
+The dataset contains images of bean leaves, categorized into three classes:
+
+Each image is labeled and stored in its respective class directory. The dataset is loaded using `torchvision.datasets.ImageFolder`.
+
+> **Note**: The dataset used is [Bean Leaf Disease Dataset](https://www.kaggle.com/datasets/emmarex/plantdisease) from Kaggle (if applicable).
 
 ## 🧠 Model Used
 
-- **GoogLeNet (Inception v1)**: A deep convolutional neural network that achieved top results in the ImageNet challenge. It is used here as a pretrained model with fine-tuning on a specific image dataset.
+- **GoogLeNet (Inception v1)** from `torchvision.models`
+- Transfer learning: Pretrained weights from ImageNet
+- Final classifier layers adjusted for 3-class output
 
-## 🔍 Features
+## ⚙️ Features
 
-- Pretrained GoogLeNet model from `torchvision.models`
-- Custom dataset loading with PyTorch `ImageFolder`
-- Train-test split and DataLoader preparation
-- Accuracy evaluation on test dataset
-- `torch.no_grad()` used for inference efficiency
+- Image transformations and augmentation using `torchvision.transforms`
+- Training and validation loops using PyTorch
+- Accuracy evaluation
+- GPU support for faster training (if available)
 
 ## 🚀 How to Run
 
-1. Clone this repository:
+1. Clone the repository:
     ```bash
-    git clone https://github.com/Satishnaidu2633/Image-Classification-using-Pretrained-Model
-    cd image-classification-googlenet
+    git clone https://github.com/yourusername/bean-leaf-disease-classification.git
+    cd bean-leaf-disease-classification
     ```
 
-2. Install required libraries:
+2. Install dependencies:
     ```bash
     pip install torch torchvision matplotlib
     ```
 
-3. Place your image dataset in a folder structure like:
-    ```
-    data/
-      train/
-        class1/
-        class2/
-        ...
-      test/
-        class1/
-        class2/
-        ...
-    ```
+3. Place the dataset as described above.
 
-4. Open the Google Colab and run all cells:
+4. Launch the notebook:
     ```bash
-    google colab "Image Classification using pretrained model.ipynb"
+    jupyter notebook "Image Classification using pretrained model.ipynb"
     ```
 
-## 📊 Evaluation
+## 📊 Evaluation Metric
 
-The model is evaluated using accuracy metric calculated on the test dataset:
+Model performance is measured using classification accuracy on the test dataset:
+
 ```python
 test_accuracy = round((total_acc_test / len(test_dataset)) * 100, 2)
